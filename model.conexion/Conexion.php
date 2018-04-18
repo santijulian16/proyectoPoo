@@ -6,10 +6,11 @@ class Conexion {
         $con = null;
         try {
             $dsn = 'mysql:dbname=' . 'asignamaterias' . ';host=' . 'localhost' . ';port=' . '3306';
+            // Se crea objeto PDO con los datos de la conexion de la base de datos
             $con = new PDO($dsn, 'root', '');
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $ex) {
-            echo 'Error: ' . $ex->getMessage();
+            echo 'Error: ' . $ex->getMessage(); 
         }
         return $con;
     }

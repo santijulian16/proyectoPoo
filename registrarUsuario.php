@@ -13,6 +13,7 @@
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/es_ES.js" type="text/javascript"></script>
         <script>
+//            script para realizar validaciones de formularios
             $().ready(function () {
                 $('#regitrarusu').formValidation({
                     err: {container: 'tooltip'},
@@ -88,6 +89,7 @@
     </head>
     <body style="background-color: #E0E0E0;">        
         <?php
+//        valido el tipo de mensaje si satifactorio (S) o con error (E) para mostrar alerta roja o verde con el mensaje que viene por GET
         if (isset($_GET['msj'])) {
             if (substr($_GET['msj'], 1, 1) == "S") {
                 echo '<div class="alert alert-success alert-dismissible" role="alert">
