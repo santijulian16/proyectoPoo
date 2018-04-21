@@ -3,15 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Proyecto POO | Registrar Usuario</title>
-        <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
+        <!--<link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">-->
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
-        <link href="css/formValidation.css" rel="stylesheet" type="text/css"/>
-        <script src="js/formValidation.min.js"></script>
         <script src="js/jquery-1.12.0.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.js"></script>
+        <script src="js/formValidation.min.js"></script>
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/es_ES.js" type="text/javascript"></script>
+        <link href="css/formValidation.css" rel="stylesheet" type="text/css"/>
         <script>
 //            script para realizar validaciones de formularios
             $().ready(function () {
