@@ -41,5 +41,16 @@ class UsuariosDAO {
             echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
         }
     }
+    
+    public function listarUsu(){
+       $con = Conexion::getConexion();
+        try {
+            $query = $con->prepare("select * from usuarios");//Sentecia sql
+            $query->execute(); //Ejecuta la senecia sql
+            return $query->fetchAll(); //Se retrona mensaje de confirmacion del registro
+        } catch (Exception $ex) {
+            echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
+        }        
+    }
 
 }
