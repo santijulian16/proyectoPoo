@@ -52,5 +52,18 @@ class UsuariosDAO {
             echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
         }        
     }
-
-}
+    
+       public function validarappusu($id_usu, $id_app){
+       $con = Conexion::getConexion();
+        try {
+            $query = $con->prepare("select cod_app from applicausuario where cod_usu = ? and cod_app = ?");//Sentecia sql
+            $query->bindParam(1, $id_usu);
+            $query->bindParam(2, $id_app);
+            $query->execute(); //Ejecuta la senecia sql
+            return empty($query->fetchAll()); //Se retrona mensaje de confirmacion del registro
+        } catch (Exception $ex) {
+            echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
+        }        
+    } 
+      
+    }
