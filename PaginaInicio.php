@@ -13,7 +13,7 @@ include './model.DAO/usuariosDAO.php';
 <html>
     <head><title>Pagina Inicio</title></head>
         <body style="background-color: #E0E0E0;">
-            <h1><div style = "border: 25px solid #82E0AA;">Bienvenido: <?php //echo $_SESSION["nombre"];?></div> </h1>
+
             <?php
             /*
                $sql = "SELECT a.nombre nombre,a.url url FROM usuarios u, usu_apli up where a.id=up.id_apli and up.id_usuario=u.id and u.id=$id";
@@ -46,28 +46,59 @@ include './model.DAO/usuariosDAO.php';
                 }	*/
             ?>
                     <div class="col-md-6 pull-left">
-                        <a style="position: relative; align-content: center; " href="index.php" class="btn btn-link"><i class="fa fa-arrow-left"></i> Salir</a>
+                        <a><input type="button" value="Salir" onclick="Salir();"></a>
                     </div>
 
             <div class="container">
                 <div class="row">
                     <div class="col-md-offset-4 col-md-4">
-
-                        <form id="mostrarnombre" method="post" action="../../controladores/controlador.php">
-                            <div>
-                                <table style="border:500px; width: 100%; height: auto; border-collapse: collapse; margin: 10px; font-family:Lucida Sans Unicode, Lucida Grande, Sans-Serif;
-                                font-size: 12px;    margin: 45px;     width: 480px; text-align: left;    border-collapse: collapse; "  >
-                                    <tr style = "background: #d0dafd; color: #339;">
-                                        <td rowspan = "50" style = "background: #F8C471;"> campo de muestra</td>
-                                        <td><label for="permisos">Permisos de usuarios</label></td>    
-                                        <tr style = "background: #d0dafd; color: #339;"><td><label for="docentes">Docentes</label></td></tr>
-                                        <tr style = "background: #d0dafd; color: #339;"><td><label for="salones">Salones</label></td></tr>  
-                                        <tr style = "background: #d0dafd; color: #339;"><td><label for="asignacion_salones">Asignacion de salones</label></td></tr>
-                                        <tr></tr>
+                        <table width="100%" heigth="100%" border="0">
+                            <tbody>
+                                <tr heigth="10%">
+                                    <td width="20%" align="center">MIS BOTONES</td>
+                                    <td><div>BIENVENIDO: <?php //echo $_SESSION["nombre"];?></div></td>
+                                </tr>
+                                <tr height="90%">
+                                    <td valign="top" align="center">
+                                        <table border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center">
+                                                        <input type="button" value="Asignacion de permisos" onclick="cargar('permisos.php')">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="button" value="Docentes" onclick="cargar('docentes.php')">   
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 
+                                                        <input type="button" value="Programas" onclick="cargar('programas.php')"> 
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="button" value="Salones" onclick="cargar('salones.php')"> 
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="button" value="Edificios" onclick="cargar('Edificios.php')"> 
+                                                    </td>
+                                                </tr> 
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <iframe name="ifr" id="ifr" width="100%" height="100%">
                                             
-                                </table>
-                            </div>
-                        </form>                    
+                                        </iframe>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>   
+                                        
                     </div>
                 </div>
             </div>
