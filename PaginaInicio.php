@@ -5,9 +5,12 @@ include './model.conexion/Conexion.php';
 include './model.DAO/usuariosDAO.php';
 ?>
 <script>
-    function Salir(){
+    function Cerrar Sesion(){
         document.form.action='index.php';
 	document.form.submit();
+    }
+    function cargar(b){
+	ifr.location.href=b;
     }
 </script>
 <html>
