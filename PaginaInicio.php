@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 include './model.conexion/Conexion.php';
-//$id = $_SESSION["idusuario"];
 include './model.DAO/usuariosDAO.php';
 ?>
 <html>
@@ -34,11 +33,32 @@ include './model.DAO/usuariosDAO.php';
                         <tbody>
                             <tr heigth="10%">
                                 <td width="20%" align="center" style="background-color: #FAD7A0">MIS BOTONES</td>
-                                <td><div style="padding: 15px; background-color: #82E0AA">BIENVENIDO <?php //echo $_SESSION["nombre"]; ?></div></td>
+                                <td><div style="padding: 15px; background-color: #82E0AA">BIENVENIDO <?php //echo $_SESSION["nombre"];      ?></div></td>
                             </tr>
                             <tr height="90%">
                                 <td valign="top" align="center">
                                     <?php
+                                    $usuDao = new UsuariosDAO();
+                                    if (isset($_SESSION['user'])) {
+                                        $id_usu = $_SESSION['user'];
+                                    }
+                                    echo $id_usu;
+                                    $listapp = $usuDao->list_appbyusu($id_usu);
+                                    if (!empty($listapp)) {
+                                        echo "<table border=0>";
+                                        foreach ($listapp as $aplicacion) {
+//                                    $row = $result->fetch_assoc();
+                                            $nombre_c = $aplicacion["nombre"];
+                                            $url_c = $aplicacion["url"];
+
+                                            echo "
+                                      <tr>
+                                      <td align=center><input type=button value='$nombre_c' onclick=cargar('$url_c');></td>
+                                      </tr>
+                                      ";
+                                        }
+                                        echo "</table>";
+                                    }
                                     /*
                                       $sql = "SELECT a.nombre nombre,a.url url FROM usuarios u,aplicaciones a, usu_apli up where a.id=up.id_apli and up.id_usuario=u.id and u.id=$id";
                                       $result = $con;

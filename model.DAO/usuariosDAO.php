@@ -25,6 +25,20 @@ class UsuariosDAO {
         }
     }
 
+    public function login($documento, $clave) {
+//      llamado a la metodo estatitico para adquirir la conexion
+        $con = Conexion::getConexion();
+        try {
+            $query = $con->prepare("SELECT * FROM usuarios WHERE documento=? AND clave=?"); //Sentecia sql
+            $query->bindParam(1, $documento); //Paso el documento al parametro de la setencia sql
+            $query->bindParam(2, $clave); //Paso el documento al parametro de la setencia sql
+            $query->execute(); //Ejecuta la senecia sql
+            return $query->fetch();
+        } catch (Exception $ex) {
+            echo $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
+        }
+    }
+
     public function registrarUsu(UsuarioDTO $usuDto) {
 //      llamado a la metodo estatitico para adquirir la conexion
         $con = Conexion::getConexion();

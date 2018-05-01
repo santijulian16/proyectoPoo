@@ -56,11 +56,29 @@ IF (isset($_POST["regusu"])) {
                 $mess = $usudao->eliminarPermiso($appusu);
             }
         }
-    }    
-    
+    }
+
 // Redirecciono del controlador hacia la pagina de registrar usuario con una variable por GET
 // con el mensaje resultante de la operación
     header("Location: ../web/usuarios/listusuarios.php?msj=$mess");
+} else if (isset($_POST['login'])) {
+    $usuario = $_POST['documento'];
+    $pw = $_POST['password'];
+    $usuDao = new UsuariosDAO();
+//    $log = mysql_query("SELECT * FROM usuarios WHERE documento='$usuario' AND clave='$pw'");
+    $usu = $usuDao->login($usuario, $pw);
+//    if (mysql_num_rows($log) > 0) {
+    if ($usu['codigo'] != null) {
+//        $row = mysql_fetch_array($log); 
+        session_start();
+        $_SESSION['user'] = $usu['codigo'];
+//        echo '<script window.location="../PaginaInicio.php"; </script>';
+        echo $_SESSION['user'];
+//        header("Location: ../PaginaInicio.php");
+    } else {
+        echo '<script> alert("Usuario o contraseña son incorrectos.");</script>';
+        echo '<script> window.location="../index.php"; </script>';
+    }
 }
 /* 
  * To change this license header, choose License Headers in Project Properties.
