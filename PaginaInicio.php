@@ -23,12 +23,12 @@ include './model.DAO/usuariosDAO.php';
     <body style="background-color: #E0E0E0;">
 
         <div class="col-md-6 pull-left" style="padding: 40px;">
-            <a align="right" href="index.php" class="btn btn-success"><i class="fa fa-sign-in"></i> Cerrar Sesion </a>
+            <a align="right" href="model.conexion/Cerrar.php" class="btn btn-success"><i class="fa fa-sign-in"></i> Cerrar Sesion </a>
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col-md-offset-4 col-md-4">
+                <div class="col-md-12">
                     <table width="100%" heigth="100%" border="0">
                         <tbody>
                             <tr heigth="10%">
@@ -39,10 +39,10 @@ include './model.DAO/usuariosDAO.php';
                                 <td valign="top" align="center">
                                     <?php
                                     $usuDao = new UsuariosDAO();
+                                    session_start();
                                     if (isset($_SESSION['user'])) {
                                         $id_usu = $_SESSION['user'];
                                     }
-                                    echo $id_usu;
                                     $listapp = $usuDao->list_appbyusu($id_usu);
                                     if (!empty($listapp)) {
                                         echo "<table border=0>";
@@ -53,12 +53,13 @@ include './model.DAO/usuariosDAO.php';
 
                                             echo "
                                       <tr>
-                                      <td align=center><input type=button value='$nombre_c' onclick=cargar('$url_c');></td>
+//                                     <td align=center><button type='button' onclick='cargar(/ProyectoPoo/$url_c)'>$nombre_c</button></td>
                                       </tr>
-                                      ";
+                                     ";
                                         }
                                         echo "</table>";
                                     }
+                                   
                                     /*
                                       $sql = "SELECT a.nombre nombre,a.url url FROM usuarios u,aplicaciones a, usu_apli up where a.id=up.id_apli and up.id_usuario=u.id and u.id=$id";
                                       $result = $con;
@@ -87,31 +88,31 @@ include './model.DAO/usuariosDAO.php';
                                     ?>
                                     <table border="0">
                                         <tbody>
-                                            <tr>
-                                                <td align="right">
-                                                    <input type="button" value="Asignacion de permisos" onclick="cargar('permisos.php')">
+                                            <!--<tr>
+                                                <td>
+                                                    <input type="button" class='btn btn-default' value="Asignacion de permisos" onclick="cargar('permisos.php')">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td align="right">
-                                                    <input type="button" value="Docentes" onclick="cargar('docentes.php')">   
+                                                <td>
+                                                    <input type="button" class='btn btn-default' value="Docentes" onclick="cargar('docentes.php')">   
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td align="right"> 
-                                                    <input type="button" value="Programas" onclick="cargar('programas.php')"> 
+                                                <td> 
+                                                    <input type="button" class='btn btn-default' value="Programas" onclick="cargar('programas.php')"> 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td align="right">
-                                                    <input type="button" value="Salones" onclick="cargar('salones.php')"> 
+                                                <td>
+                                                    <input type="button" class='btn btn-default' value="Salones" onclick="cargar('salones.php')"> 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td align="right">
-                                                    <input type="button" value="Edificios" onclick="cargar('Edificios.php')"> 
+                                                <td>
+                                                    <input type="button" class='btn btn-default' value="Edificios" onclick="cargar('Edificios.php')"> 
                                                 </td>
-                                            </tr> 
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </td>

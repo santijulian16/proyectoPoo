@@ -42,7 +42,11 @@ include '../../model.DAO/usuariosDAO.php';
                 <li role="presentation"><a href="home.php">Inicio</a></li>
                 <?php
                 $usuDao = new UsuariosDAO();
-                $lstappu = $usuDao->list_appbyusu(3);
+                session_start();
+                if (isset($_SESSION['user'])) {
+                    $id_usu = $_SESSION['user'];
+                }
+                $lstappu = $usuDao->list_appbyusu($id_usu);
 
                 foreach ($lstappu as $aplicacion) {
                     if ($aplicacion['codigo'] == 1) {

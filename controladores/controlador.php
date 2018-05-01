@@ -73,8 +73,10 @@ IF (isset($_POST["regusu"])) {
         session_start();
         $_SESSION['user'] = $usu['codigo'];
 //        echo '<script window.location="../PaginaInicio.php"; </script>';
-        echo $_SESSION['user'];
+//        echo $_SESSION['user'];
 //        header("Location: ../PaginaInicio.php");
+//        header("Location: ../web/usuarios/listusuarios.php");
+        header("Location: ../PaginaInicio.php");
     } else {
         echo '<script> alert("Usuario o contraseña son incorrectos.");</script>';
         echo '<script> window.location="../index.php"; </script>';

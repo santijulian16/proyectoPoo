@@ -5,7 +5,7 @@
 
     echo "<script>
             alert('Gracias por visitarnos');
-            location.href='index.php';
+            location.href='../index.php';
          </script>";
     exit;
 
