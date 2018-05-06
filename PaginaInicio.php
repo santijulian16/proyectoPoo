@@ -53,7 +53,7 @@ include './model.DAO/usuariosDAO.php';
 
                                             echo "
                                       <tr>
-//                                     <td align=center><button type='button' onclick='cargar(/ProyectoPoo/$url_c)'>$nombre_c</button></td>
+//                                     <td align=center><button type='button' onclick='cargar(/ProyectoPoo/web/usuarios/$url_c)'>$nombre_c</button></td>
                                       </tr>
                                      ";
                                         }

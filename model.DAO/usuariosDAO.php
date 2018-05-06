@@ -128,69 +128,71 @@ class UsuariosDAO {
         }
     }
     
-    public function crearPrograma(ProgramaDTO $crearPrograma) {
+    
+   public function listarProgramas() {
+        $con = Conexion::getConexion();
+        try {
+            $query = $con->prepare("select * from programas"); //Sentecia sql
+            $query->execute(); //Ejecuta la senecia sql
+            return $query->fetchAll(); //Se retrona mensaje de confirmacion del registro
+        } catch (Exception $ex) {
+            echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
+        }
+    }
+    
+    public function modPrograma(ProgramaDTO $modPrograma) {
         $con = Conexion::getConexion();
         try{
             //Creacion, modificacion y eliminacion en la tabla de programas
             $opcion=$_REQUEST['op'];
-            $t1_c=$_REQUEST['codigo'];
-            $t2_c=$_REQUEST['Nombre'];
+            $cod_p=$_REQUEST['codigo'];
+            $nom_p=$_REQUEST['Nombre'];
 
             echo "opcion:".$opcion;
-            echo "<br>codigo:".$cod_c;
-            echo "<br>Nombre:".$nom_c;
+            echo "<br>codigo:".$cod_p;
+            echo "<br>Nombre:".$nom_p;
 
             if($opcion=='Insertar'){
-
-                    $sql = "INSERT INTO programas (codigo,Nombre) VALUES ('$cod_c', '$nom_c')";
-
-                    if ($con->query($sql) === TRUE) {
-                        echo "Nuevo programa creado";
-                    } 
-                    else{
-                        echo "Error: " . $sql . "<br>" . $con->error;
-                    }
-
-                    echo "
-                    <script>alert('Se inserto exitosamente');</script> ";
+                $sql = "INSERT INTO programas (codigo,Nombre) VALUES ('$cod_p', '$nom_p')";
+                if ($con->$query($sql) === TRUE){
+                    echo "Insertar";
+                } 
+                else{
+                    echo "Error: " . $sql . "<br>" . $con->error;
+                }
+                echo "<script>"
+                    ."alert('Se inserto exitosamente');"
+                    . "</script> ";
             }
 
-            if($opcion=='Modificar')
-            {	
-                    $sql = "UPDATE  programas SET Nombre='$nom_c' WHERE codigo='$cod_c'";
-
-                    if ($con->query($sql) === TRUE) {
-                            echo "New record created successfully";
-                    } else {
-                            echo "Error: " . $sql . "<br>" . $con->error;
-                    }
-
-                    echo "
-                    <script>alert('Se modifico exitosamente');</script>";
-
-
+            if($opcion=='Modificar'){	
+                $sql = "UPDATE  programas SET Nombre='$nom_p' WHERE codigo='$cod_p'";
+                if ($con->$query($sql) === TRUE){
+                    echo "Modificar";
+                } 
+                else{
+                    echo "Error: " . $sql . "<br>" . $con->error;
+                }
+                echo "<script>"
+                    . "alert('Se modifico exitosamente');"
+                    . "</script>";
             }
-            if($opcion=='Eliminar')
-            {
-                    $sql = "delete from  tabla1 where id='$t1_c'";
-
-                    if ($conn->query($sql) === TRUE) {
-                            echo "New record created successfully";
-                    } else {
-                            echo "Error: " . $sql . "<br>" . $conn->error;
-                    }
-
-                    echo "
-                    <script>
+            if($opcion=='Eliminar'){
+                $sql = "DELETE from programas WHERE codigo='$cod_p'";
+                if ($conn->$query($sql) === TRUE) {
+                    echo "Eliminar";
+                }
+                else{
+                    echo "Error: " . $sql . "<br>" . $con->error;
+                }
+                echo "<script>
                     alert('Se elimino exitosamente');
-                    </script>
-                    ";
-
+                    </script>";
             }
-
-            echo " <script>location.href='ejemplo1.php';</script> ";
-        } catch (Exception $ex) {
-
+            echo " <script>location.href='programas.php';</script> ";
+        }
+        catch (Exception $ex) {
+            echo ("(E) ") . $ex->getMessage();
         }
     }
 
