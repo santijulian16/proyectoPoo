@@ -127,5 +127,71 @@ class UsuariosDAO {
             echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
         }
     }
+    
+    public function crearPrograma(ProgramaDTO $crearPrograma) {
+        $con = Conexion::getConexion();
+        try{
+            //Creacion, modificacion y eliminacion en la tabla de programas
+            $opcion=$_REQUEST['op'];
+            $t1_c=$_REQUEST['codigo'];
+            $t2_c=$_REQUEST['Nombre'];
+
+            echo "opcion:".$opcion;
+            echo "<br>codigo:".$cod_c;
+            echo "<br>Nombre:".$nom_c;
+
+            if($opcion=='Insertar'){
+
+                    $sql = "INSERT INTO programas (codigo,Nombre) VALUES ('$cod_c', '$nom_c')";
+
+                    if ($con->query($sql) === TRUE) {
+                        echo "Nuevo programa creado";
+                    } 
+                    else{
+                        echo "Error: " . $sql . "<br>" . $con->error;
+                    }
+
+                    echo "
+                    <script>alert('Se inserto exitosamente');</script> ";
+            }
+
+            if($opcion=='Modificar')
+            {	
+                    $sql = "UPDATE  programas SET Nombre='$nom_c' WHERE codigo='$cod_c'";
+
+                    if ($con->query($sql) === TRUE) {
+                            echo "New record created successfully";
+                    } else {
+                            echo "Error: " . $sql . "<br>" . $con->error;
+                    }
+
+                    echo "
+                    <script>alert('Se modifico exitosamente');</script>";
+
+
+            }
+            if($opcion=='Eliminar')
+            {
+                    $sql = "delete from  tabla1 where id='$t1_c'";
+
+                    if ($conn->query($sql) === TRUE) {
+                            echo "New record created successfully";
+                    } else {
+                            echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
+
+                    echo "
+                    <script>
+                    alert('Se elimino exitosamente');
+                    </script>
+                    ";
+
+            }
+
+            echo " <script>location.href='ejemplo1.php';</script> ";
+        } catch (Exception $ex) {
+
+        }
+    }
 
 }

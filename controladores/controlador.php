@@ -82,6 +82,9 @@ IF (isset($_POST["regusu"])) {
         echo '<script> window.location="../index.php"; </script>';
     }
 }
+
+
+   
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
