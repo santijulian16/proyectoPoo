@@ -2,14 +2,13 @@
 <?php
 include '../../model.conexion/Conexion.php';
 include '../../model.DAO/usuariosDAO.php';
+include '../../model.DAO/programasDAO.php';
 ?>
 <html lang="es">    
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
-        <title>Programas</title>
-        <!--        <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">-->
-        <!--<link href="../../css/estilos.css" rel="stylesheet" type="text/css"/>-->
+        <title>Programas</title> 
         <link href="../../css/font-awesome.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <script src="../../js/jquery-1.12.0.min.js" type="text/javascript"></script>
@@ -24,7 +23,6 @@ include '../../model.DAO/usuariosDAO.php';
             }
         </script>
     </head>    
-    <!--<body style="background-color: #E0E0E0;">-->
     <body>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -33,7 +31,7 @@ include '../../model.DAO/usuariosDAO.php';
                 </div>
             </div>
         </nav>   
-        <form id="usu" method="post" action="permisos.php">
+        <form id="usu" method="post" action="programas.php">
             <input type="text" style="display: none;" id="idusu" name="idusu" />
         </form>
 
@@ -46,9 +44,9 @@ include '../../model.DAO/usuariosDAO.php';
                 if (isset($_SESSION['user'])) {
                     $id_usu = $_SESSION['user'];
                 }
-                $programa = $usuDao->modPrograma($modPrograma);
+                $lstappu = $usuDao->list_appbyusu($id_usu);
 
-                foreach ($programa as $aplicacion) {
+                foreach ($lstappu as $aplicacion) {
                     if ($aplicacion['codigo'] == 1) {
                         ?>
                         <li role="presentation" class="active"><a href="/ProyectoPoo/<?php echo $aplicacion['url']; ?>"><?php echo $aplicacion['nombre']; ?></a></li>
@@ -57,7 +55,7 @@ include '../../model.DAO/usuariosDAO.php';
                         <?php
                     }
                 }
-                ?>
+                ?>  
             </ul>   
         </div>
         <div class="container">
@@ -86,11 +84,26 @@ include '../../model.DAO/usuariosDAO.php';
                        data-page-size="10"
                        data-page-list="[10,25,40,50,100,1000]"
                        >
-                    <caption>Programas</caption>
-                    <thead>
+                    <caption></caption>
+                    <!--<div>
                         <tr>
-                            <th data-field="insertar">Agregar Programa</th>
+                            <div>
+                                <?php
+                                    //$lisprogra = $usuDao->listarProgramas();
+                                ?>
+                                <th><input type="text" data-field="Codigo" placeholder="Codigo programa"></th>
+                                <th><input type="text" data-field="Nombre" placeholder="Nombre programa"></th>
+                                <th><center><button type="button" data-field="insertar" onclick="setcodigo(<?php //echo $usuario['codigo']; ?>), setNombre(<?php //echo $usuario['Nombre']; ?>)" title="Agregar Programa" class="btn btn-default"><i>Agregar Programa</i></button></center></th>
+                            </div>
                         </tr>
+                        <div>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </div>
+                        </tr>
+                    </div>-->
+                    <thead>
                         <tr>
                             <th data-field="codigo" data-sortable="true">Codigo</th>
                             <th data-field="nombre" data-sortable="true">Nombre</th>
@@ -100,16 +113,17 @@ include '../../model.DAO/usuariosDAO.php';
                     </thead>
                     <tbody>
                         <?php
-                        $lisprogra = $usuDao->listarProgramas();
-
+                        $proDao = new ProgramasDAO();
+                        $lisprogra = $proDao->listarProgramas();
                         foreach ($lisprogra as $usuario) {
-                            ?>
+                        ?>
                             <tr>
                                 <td><?php echo $usuario['codigo']; ?></td>
                                 <td><?php echo $usuario['Nombre']; ?></td>
-                                <td><center><button type="button" onclick="setNombre(<?php echo $usuario['Nombre']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
-                        </tr>
-                    <?php } ?>
+                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
