@@ -3,11 +3,7 @@
 include '../../model.conexion/Conexion.php';
 include '../../model.DAO/usuariosDAO.php';
 include '../../model.DAO/programasDAO.php';
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 if (isset($_POST['modificarPrograma'])) {
     ?>
