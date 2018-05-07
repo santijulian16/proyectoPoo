@@ -10,10 +10,8 @@ if (isset($_POST['modificarPrograma'])) {
 
     <html lang="es">    
         <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, user-scalable=no">
+            <meta charset="UTF-8" name="viewport" content="width=device-width, user-scalable=no">
             <title>Modificacion del programa</title>
-            <!--        <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">-->
             <link href="../../css/font-awesome.css" rel="stylesheet" type="text/css"/>
             <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
             <script src="../../js/jquery-1.12.0.min.js" type="text/javascript"></script>
