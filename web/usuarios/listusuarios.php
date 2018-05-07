@@ -109,7 +109,7 @@ include '../../model.DAO/usuariosDAO.php';
                                 <td><?php echo $usuario['documento']; ?></td>
                                 <td><?php echo $usuario['nombre']; ?></td>
                                 <td><?php echo $usuario['apellido']; ?></td>
-                                <td><center><button type="button" onclick="setdocumento(<?php echo $usuario['documento']; ?>)" title="Asignar Permisos" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                                <td><center><button type="button" onclick="setdocumento(<?php echo $usuario['codigo']; ?>)" title="Asignar Permisos" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
                         </tr>
                     <?php } ?>
                     </tbody>
