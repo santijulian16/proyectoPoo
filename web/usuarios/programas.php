@@ -71,61 +71,63 @@ include '../../model.DAO/programasDAO.php';
                         }
                     }
                 ?>
-                <table data-toggle="table"
-                       data-show-columns="true"
-                       data-minimum-count-columns="2"
-                       data-id-field="id"
-                       data-search="true"
-                       data-show-refresh="true" 
-                       data-show-toggle="true"
-                       data-sort-name="nombre"
-                       data-sort-order="asc"
-                       data-pagination="true"
-                       data-page-size="10"
-                       data-page-list="[10,25,40,50,100,1000]"
-                       >
-                    <caption></caption>
-                    <!--<div>
-                        <tr>
+                <form  method="get" action="../../controladores/controladorProgramas.php">
+                    <table data-toggle="table"
+                           data-show-columns="true"
+                           data-minimum-count-columns="2"
+                           data-id-field="id"
+                           data-search="true"
+                           data-show-refresh="true" 
+                           data-show-toggle="true"
+                           data-sort-name="nombre"
+                           data-sort-order="asc"
+                           data-pagination="true"
+                           data-page-size="10"
+                           data-page-list="[10,25,40,50,100,1000]"
+                           >
+                        <caption></caption>
+                        <!--<div>
+                            <tr>
+                                <div>
+                                    <?php
+                                        //$lisprogra = $usuDao->listarProgramas();
+                                    ?>
+                                    <th><input type="text" data-field="Codigo" placeholder="Codigo programa"></th>
+                                    <th><input type="text" data-field="Nombre" placeholder="Nombre programa"></th>
+                                    <th><center><button type="button" data-field="insertar" onclick="setcodigo(<?php //echo $usuario['codigo']; ?>), setNombre(<?php //echo $usuario['Nombre']; ?>)" title="Agregar Programa" class="btn btn-default"><i>Agregar Programa</i></button></center></th>
+                                </div>
+                            </tr>
                             <div>
-                                <?php
-                                    //$lisprogra = $usuDao->listarProgramas();
-                                ?>
-                                <th><input type="text" data-field="Codigo" placeholder="Codigo programa"></th>
-                                <th><input type="text" data-field="Nombre" placeholder="Nombre programa"></th>
-                                <th><center><button type="button" data-field="insertar" onclick="setcodigo(<?php //echo $usuario['codigo']; ?>), setNombre(<?php //echo $usuario['Nombre']; ?>)" title="Agregar Programa" class="btn btn-default"><i>Agregar Programa</i></button></center></th>
+                                <tr>
+                                    <th></th>
+                                </tr>
                             </div>
-                        </tr>
-                        <div>
-                            <tr>
-                                <th></th>
                             </tr>
-                        </div>
-                        </tr>
-                    </div>-->
-                    <thead>
-                        <tr>
-                            <th data-field="codigo" data-sortable="true">Codigo</th>
-                            <th data-field="nombre" data-sortable="true">Nombre</th>
-                            <th data-field="actualizar">Actualizar</th>
-                            <th data-field="eliminar">Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $proDao = new ProgramasDAO();
-                        $lisprogra = $proDao->listarProgramas();
-                        foreach ($lisprogra as $usuario) {
-                        ?>
+                        </div>-->
+                        <thead>
                             <tr>
-                                <td><?php echo $usuario['codigo']; ?></td>
-                                <td><?php echo $usuario['Nombre']; ?></td>
-                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
-                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                                <th data-field="codigo" data-sortable="true">Codigo</th>
+                                <th data-field="nombre" data-sortable="true">Nombre</th>
+                                <th data-field="actualizar">Actualizar</th>
+                                <th data-field="eliminar">Eliminar</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $proDao = new ProgramasDAO();
+                            $lisprogra = $proDao->listarProgramas();
+                            foreach ($lisprogra as $usuario) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $usuario['codigo']; ?></td>
+                                    <td><?php echo $usuario['Nombre']; ?></td>
+                                    <td><center><button type="button" id="modificarPrograma" onclick="setcodigo(<?php echo $usuario['Nombre']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                                    <td><center><button type="button" id="eliminarPrograma" onclick="setcodigo(<?php echo $usuario['Nombre']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </form>    
             </div>
         </div>
     </body>
