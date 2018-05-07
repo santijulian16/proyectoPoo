@@ -50,7 +50,7 @@ elseif (isset ($_POST['modificarPrograma'])) {
     } else {
         $mess = "(E)Error: Programa no existe.";
     }
-    header("Location: ../web/usuarios/programas.php?msj=$mess");
+    header("Location: ../web/usuarios/modificarPrograma.php?msj=$mess");
 }
 
    

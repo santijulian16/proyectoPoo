@@ -28,7 +28,7 @@ class ProgramasDAO {
             echo $ex->getMessage();
         }
     }
-    //Insertr nuevo programa
+    //Insertar nuevo programa
     public function insertarPrograma(ProgramaDTO $insertarPrograma) {
         $con = Conexion::getConexion();
         try{

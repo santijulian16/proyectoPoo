@@ -121,7 +121,7 @@ include '../../model.DAO/programasDAO.php';
                                 <tr>
                                     <td><?php echo $usuario['codigo']; ?></td>
                                     <td><?php echo $usuario['Nombre']; ?></td>
-                                    <td><center><button type="button" id="modificarPrograma" onclick="setcodigo(<?php echo $usuario['Nombre']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                                    <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="modificarPrograma" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
                                     <td><center><button type="button" id="eliminarPrograma" onclick="setcodigo(<?php echo $usuario['Nombre']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
                                 </tr>
                             <?php } ?>
