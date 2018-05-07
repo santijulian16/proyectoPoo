@@ -29,7 +29,7 @@ IF (isset($_POST["regusu"])) {
     }
 // Redirecciono del controlador hacia la pagina de registrar usuario con una variable por GET
 // con el mensaje resultante de la operación
-    header("Location: ../registrarUsuario.php?msj=$mess");
+    header("Location: ../web/usuarios/registrarUsuario.php?msj=$mess");
 } elseif (isset($_POST["guadarperm"])) {
     $usudao = new UsuariosDAO();
     $appdao = new AplicacionesDao();
@@ -72,11 +72,12 @@ IF (isset($_POST["regusu"])) {
 //        $row = mysql_fetch_array($log); 
         session_start();
         $_SESSION['user'] = $usu['codigo'];
+        $_SESSION['nombre'] = $usu['nombre'];
 //        echo '<script window.location="../PaginaInicio.php"; </script>';
 //        echo $_SESSION['user'];
 //        header("Location: ../PaginaInicio.php");
 //        header("Location: ../web/usuarios/listusuarios.php");
-        header("Location: ../PaginaInicio.php");
+        header("Location: ../web/PaginaInicio.php");
     } else {
         echo '<script> alert("Usuario o contraseña son incorrectos.");</script>';
         echo '<script> window.location="../index.php"; </script>';

@@ -4,15 +4,15 @@
         <meta charset="UTF-8">
         <title>Proyecto POO | Registrar Usuario</title>
         <!--<link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">-->
-        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
-        <script src="js/jquery-1.12.0.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/formValidation.min.js"></script>
-        <script src="js/bootstrapValidator.js" type="text/javascript"></script>
-        <script src="js/es_ES.js" type="text/javascript"></script>
-        <link href="css/formValidation.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <script src="../../js/jquery-1.12.0.min.js" type="text/javascript"></script>
+        <script src="../../js/bootstrap.js"></script>
+        <script src="../../js/formValidation.min.js"></script>
+        <script src="../../js/bootstrapValidator.js" type="text/javascript"></script>
+        <script src="../../js/es_ES.js" type="text/javascript"></script>
+        <link href="../../css/formValidation.css" rel="stylesheet" type="text/css"/>
         <script>
 //            script para realizar validaciones de formularios
             $().ready(function () {
@@ -113,7 +113,7 @@
 
                     <h1><i class="fa fa-user-plus"></i> Registrar Usuario</h1>
                     <br />
-                    <form id="regitrarusu" action="controladores/controlador.php" method="post">
+                    <form id="regitrarusu" action="../../controladores/controlador.php" method="post">
                         <div class="form-group">
                             <label for="documento">Nombre</label>
                             <input type="text" placeholder="Juan" id="nombre" name="nombre" class="form-control" />
@@ -140,7 +140,7 @@
                         </div>
                     </form>
                     <div class="col-md-6 pull-left">
-                        <a href="index.php" class="btn btn-link"><i class="fa fa-arrow-left"></i> Volver</a>
+                        <a href="../../index.php" class="btn btn-link"><i class="fa fa-arrow-left"></i> Volver</a>
                     </div>
                 </div>
             </div>

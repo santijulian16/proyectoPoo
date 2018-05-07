@@ -79,7 +79,7 @@ include './model.conexion/Conexion.php';
                         </div>
                     </form>
                     <div class="col-md-6 pull-left">
-                        <a href="registrarUsuario.php" class="btn btn-warning">Registrar Usuario</a>
+                        <a href="web/usuarios/registrarUsuario.php" class="btn btn-warning">Registrar Usuario</a>
                     </div>
                 </div>
             </div>

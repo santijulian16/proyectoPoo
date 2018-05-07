@@ -33,7 +33,7 @@ if (isset($_POST['idusu'])) {
             </nav> 
             <div class="col-md-2">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="PaginaInicio.php">Inicio</a></li>
+                    <li role="presentation"><a href="../PaginaInicio.php">Inicio</a></li>
                     <?php
                     $usuDao = new UsuariosDAO();
                     $lstappu = $usuDao->list_appbyusu(3);
