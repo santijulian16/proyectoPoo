@@ -66,9 +66,6 @@ if (isset($_POST['modificarPrograma'])) {
                                 <input type="text" <?php
                                 echo 'codigo="' . $modificarPrograma['codigo'] . '" ';
                                 echo 'Nombre="' . $modificarPrograma['Nombre'] . '" ';
-                                if ($extapp) {
-                                    echo 'checked="checked"';
-                                }
                                 ?> > 
                                 <label for="<?php echo $modificarPrograma['codigo']; ?>"> <?php echo $modificarPrograma['Nombre']; ?> </label>
 
