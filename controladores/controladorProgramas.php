@@ -18,7 +18,7 @@ if (isset ($_POST['insertarPrograma'])) {
     } else {
         $mess = "(E)Error: Programa a insertar ya existe.";
     }
-    header("Location: ../web/usuarios/programas.php?msj=$mess");
+    header("Location: ../web/usuarios/agregarPrograma.php?msj=$mess");
 }
 //Eliminar programa
 elseif (isset ($_POST['eliminarPrograma'])) {

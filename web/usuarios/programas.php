@@ -31,7 +31,7 @@ include '../../model.DAO/programasDAO.php';
                 </div>
             </div>
         </nav>   
-        <form id="usu" method="post" action="programas.php">
+        <form id="usu" method="post" action="modificarProgramas.php">
             <input type="text" style="display: none;" id="idusu" name="idusu" />
         </form>
 
