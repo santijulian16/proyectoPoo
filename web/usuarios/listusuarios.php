@@ -2,6 +2,9 @@
 <?php
 include '../../model.conexion/Conexion.php';
 include '../../model.DAO/usuariosDAO.php';
+session_start();
+if (isset($_SESSION['user'])) {
+    ?>
 ?>
 <html lang="es">    
     <head>
@@ -30,6 +33,12 @@ include '../../model.DAO/usuariosDAO.php';
             <div class="container-fluid">
                 <div class="navbar-header">
                     <h2>Proyecto POO</h2>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        <a href="../cerrar.php" class="btn btn-success"><i class="fa fa-sign-in"></i> Cerrar Sesion </a>
+                    </ul>
                 </div>
             </div>
         </nav>   
@@ -118,6 +127,10 @@ include '../../model.DAO/usuariosDAO.php';
         </div>
     </body>
 </html>
+    <?php
+} else {
+    header("Location: ../../index.php");
+}?>
 
 
 

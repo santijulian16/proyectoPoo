@@ -35,7 +35,7 @@ if (isset($_SESSION['user'])) {
                                    <tbody>
                                        <tr heigth="10%">
                                            <td width="20%" align="center" style="background-color: #FAD7A0">MIS BOTONES</td>
-                                           <td><div style="padding: 15px; background-color: #82E0AA">BIENVENIDO <?php //echo $_SESSION["nombre"];              ?></div></td>
+                                           <td><div style="padding: 15px; background-color: #82E0AA">BIENVENIDO <?php //echo $_SESSION["nombre"];               ?></div></td>
                                        </tr>
                                        <tr height="90%">
                                            <td valign="top" align="center">
@@ -150,8 +150,8 @@ if (isset($_SESSION['user'])) {
                     <li role="presentation" class="active"><a href="home.php">Inicio</a></li>
                     <?php
                     $usuDao = new UsuariosDAO();
-                    
-                $cos_usu = $_SESSION['user'];
+
+                    $cos_usu = $_SESSION['user'];
                     $lstappu = $usuDao->list_appbyusu($cos_usu);
                     foreach ($lstappu as $aplicacion) {
                         ?>
