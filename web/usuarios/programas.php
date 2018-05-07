@@ -17,9 +17,9 @@ include '../../model.DAO/programasDAO.php';
         <script src="../../js/bootstrap-table.js"></script>
         <script src="../../js/bootstrap-table-ca-ES.js"></script>
         <script>
-            function setdocumento(idusu) {
-                document.getElementById("idusu").value = idusu;
-                $("#usu").submit();
+            function setcodigo(codigo) {
+                document.getElementById("codigo").value = codigo;
+                $("#cod").submit();
             }
         </script>
     </head>    

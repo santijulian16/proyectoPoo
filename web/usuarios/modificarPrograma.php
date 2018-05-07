@@ -48,26 +48,24 @@ if (isset($_POST['modificarPrograma'])) {
                 <div class="col-md-6 col-md-offset-3">
                     <h4>Lista de Permisos</h4>
                     <hr />
-                    <form id="permisos" method="post" action="../../controladores/controladorProgramas.php">
+                    <form id="modificarPrograma" method="post" action="../../controladores/controladorProgramas.php">
                         <?php
-                        $proDao = new ProgramasDAO();
-                        $cod_p = $_POST['modificarPrograma'];
+                            $proDao = new ProgramasDAO();
+                            $cod_p = $_POST['modificarPrograma'];
                         ?>                        
-                        <input type="hidden" id="codigo" name="codigo" value="<?php echo $cod_p; ?>" />
+                            <input type="hidden" id="codigo" name="codigo" value="<?php echo $cod_p; ?>" />
                         <?php
-                        $lisprogra = $proDao->listarProgramas();
-                        foreach ($listapp as $modificarPrograma) {
-                            $cod_p = $modificarPrograma['codigo'];
-                            $extapp = $proDao->modificarPrograma($cod_p, $nom_p);
-                            ?>
-                            <div class="form-group">
-                                <input type="text" <?php
-                                echo 'codigo="' . $modificarPrograma['codigo'] . '" ';
-                                echo 'Nombre="' . $modificarPrograma['Nombre'] . '" ';
-                                ?> > 
-                                <label for="<?php echo $modificarPrograma['codigo']; ?>"> <?php echo $modificarPrograma['Nombre']; ?> </label>
+                            $lisprogra = $proDao->listarProgramas();
+                            foreach ($listapp as $modificarPrograma) {
+                                $cod_p = $modificarPrograma['codigo'];
+                                $extapp = $proDao->modificarPrograma($cod_p, $nom_p);
+                        ?>
+                                <div class="form-group">
+                                    <input type="text" <?php echo 'codigo="' . $modificarPrograma['codigo'] . '" '; ?> >
+                                    <input type="text" <?php echo 'Nombre="' . $modificarPrograma['Nombre'] . '" '; ?> >
+                                    <label for="<?php echo $modificarPrograma['codigo']; ?>"> <?php echo $modificarPrograma['Nombre']; ?> </label>
 
-                            </div>
+                                </div>
                         <?php } ?>
                         <input type="text" style="display: none;" id="docusu" name="docusu" />
                         <div class="col-md-6 pull-right">
@@ -82,7 +80,7 @@ if (isset($_POST['modificarPrograma'])) {
         </body>
     </html>    
     <?php
-} else {
-    header("Location: programas.php");
-}
-?>
+        } else {
+            header("Location: programas.php");
+        }
+    ?>
