@@ -120,8 +120,8 @@ include '../../model.DAO/programasDAO.php';
                             <tr>
                                 <td><?php echo $usuario['codigo']; ?></td>
                                 <td><?php echo $usuario['Nombre']; ?></td>
-                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
-                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-unlock-alt"></i></button></center></td>
+                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-pencil fa-lg"></i></button></center></td>
+                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-trash fa-lg"></i></button></center></td>
                             </tr>
                         <?php } ?>
                     </tbody>
