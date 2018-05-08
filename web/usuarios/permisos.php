@@ -8,7 +8,7 @@ include '../../model.DAO/aplicacionesDao.php';
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+session_start();
 if (isset($_SESSION['user'])) {
     if (isset($_POST['idusu'])) {
         ?>
