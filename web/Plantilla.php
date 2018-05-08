@@ -48,6 +48,7 @@ if (isset($_SESSION['user'])) {
                 </ul>   
             </div>
             <div class="container">
+                <!--Agregar contenido aqui dependiendo de la necidad del desarrollo-->
             </div>
         </body>
     </html> 
