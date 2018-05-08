@@ -22,19 +22,16 @@ if (isset ($_POST['insertarPrograma'])) {
 }
 //Eliminar programa
 elseif (isset ($_POST['eliminarPrograma'])) {
-    $cod_p = $_POST['codigo'];
-    $nom_p = $_POST['Nombre'];
-    $lisprogra = $programasDao->listarProgramas();
-    $existPro = $programasDao->valExisPro($_POST['codigo']);
-    if ($existPro) {
-        $proDto = new programaDTO();
-        $proDto->setCodigo($_POST['codigo']);
-        $proDto->setNombre($_POST['Nombre']);
-        $mess = $programasDao->eliminarPrograma($eliminarPrograma);
+    $cod_p = $_POST['eliminar'];
+    echo $cod_p;
+    $programasDao = new ProgramasDAO();
+    $existPro = $programasDao->valExisPro($_POST['eliminar']);
+    if (!$existPro) {
+        $mess = $programasDao->eliminarPrograma($cod_p);
     } else {
         $mess = "(E)Error: Programa no existe.";
     }
-    header("Location: ../web/usuarios/programas.php?msj=$mess");
+    header("Location: ../web/programas/programas.php?msj=$mess");
 }
 //Modificar programa
 elseif (isset ($_POST['modificarPrograma'])) {

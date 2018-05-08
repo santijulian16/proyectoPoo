@@ -85,30 +85,16 @@ class ProgramasDAO {
         
     }
     //Eliminar programa
-    public function eliminarPrograma(ProgramaDTO $eliminarPrograma){
+    public function eliminarPrograma($eliminarPrograma){
         $con = Conexion::getConexion();
-        try{
-            $opcion=$_REQUEST['op'];
-            $cod_p=$_REQUEST['codigo'];
-            $nom_p=$_REQUEST['Nombre'];
-            echo "opcion:".$opcion;
-            echo "<br>codigo:".$cod_p;
-            echo "<br>Nombre:".$nom_p;
-            if($opcion=='Eliminar'){
-                $sql = "DELETE from programas WHERE codigo='$cod_p'";
-                if ($conn->$query($sql) === TRUE) {
-                    echo "Eliminar";
-                }
-                else{
-                    echo "Error: " . $sql . "<br>" . $con->error;
-                }
-                echo "<script>
-                    alert('Se elimino exitosamente');
-                    </script>";
-            }
-            echo " <script>location.href='programas.php';</script> ";
+        try {
+            $query = $con->prepare("DELETE from programas WHERE codigo='$eliminarPrograma'"); //Sentecia sql
+            // Se pasan todos los parametros a la sentencia SQL
+            $query->execute(); //Ejecuta la senecia sql
+            return "(P)Programa Eliminado con existo.";
+            ; //Se retrona mensaje de confirmacion del registro
         } catch (Exception $ex) {
-            echo ("(E) ") . $ex->getMessage();
+            echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
         }
     }
 }

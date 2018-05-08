@@ -21,6 +21,10 @@ include '../../model.DAO/programasDAO.php';
                 document.getElementById("idusu").value = idusu;
                 $("#usu").submit();
             }
+            function eliminar(idpro) {
+                    $('#eliminarm').modal('show');
+                    document.getElementById("eliminar").value = idpro;
+                }
         </script>
     </head>    
     <body>
@@ -28,6 +32,12 @@ include '../../model.DAO/programasDAO.php';
             <div class="container-fluid">
                 <div class="navbar-header">
                     <h2>Proyecto POO</h2>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <br />
+                            <a href="../cerrar.php" class="btn btn-success"><i class="fa fa-sign-in"></i> Cerrar Sesion </a>
+                        </ul>
                 </div>
             </div>
         </nav>   
@@ -71,6 +81,8 @@ include '../../model.DAO/programasDAO.php';
                         }
                     }
                 ?>
+                <a class="btn btn-primary" href="agregarPrograma.php?opr=ins"> <i class="fa fa-plus"></i> Agregar Programa</a>
+                    <br />
                 <table data-toggle="table"
                        data-show-columns="true"
                        data-minimum-count-columns="2"
@@ -115,17 +127,40 @@ include '../../model.DAO/programasDAO.php';
                         <?php
                         $proDao = new ProgramasDAO();
                         $lisprogra = $proDao->listarProgramas();
-                        foreach ($lisprogra as $usuario) {
+                        foreach ($lisprogra as $programa) {
                         ?>
                             <tr>
-                                <td><?php echo $usuario['codigo']; ?></td>
-                                <td><?php echo $usuario['Nombre']; ?></td>
-                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-pencil fa-lg"></i></button></center></td>
-                                <td><center><button type="button" onclick="setcodigo(<?php echo $usuario['codigo']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-trash fa-lg"></i></button></center></td>
+                                <td><?php echo $programa['codigo']; ?></td>
+                                <td><?php echo $programa['Nombre']; ?></td>
+                                <!--Validar nuevamente-->
+                                <td><center><button type="button" onclick="setcodigo(<?php echo $programa['codigo']; ?>)" title="Actualizar" class="btn btn-default"><i class="fa fa-pencil fa-lg"></i></button></center></td>
+                                <td><center><button type="button" onclick="eliminar(<?php echo $programa['codigo']; ?>)" title="Eliminar" class="btn btn-default"><i class="fa fa-trash fa-lg"></i></button></center></td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
+                    <!--Comprobar si funciona-->
+                    <div class="modal fade" id="eliminarm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Eliminar</h4>
+                                </div>
+                                <form id="formelim" action="../../controladores/controladorProgramas.php" method="post">
+                                    <div class="modal-body">
+                                        ¿Desea eliminar este programa?
+                                        <input hidden="true" id="eliminar" name="eliminar">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="sumbit" class="btn btn-danger" id="eliminarPrograma" name="eliminarPrograma"><i class="fa fa-trash"></i>&nbsp;Eliminar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </body>
