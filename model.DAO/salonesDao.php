@@ -47,7 +47,7 @@ class SalonesDao {
 //      llamado a la metodo estatitico para adquirir la conexion
         $con = Conexion::getConexion();
         try {
-            $query = $con->prepare("DELETE FROM salones WHERE codigp =?"); //Sentecia sql
+            $query = $con->prepare("DELETE FROM salones WHERE codigo =?"); //Sentecia sql
             // Se pasan todos los parametros a la sentencia SQL
             $query->bindParam(1, $id_sal);
             $query->execute(); //Ejecuta la senecia sql
