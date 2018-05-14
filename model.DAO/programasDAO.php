@@ -20,7 +20,7 @@ class ProgramasDAO {
     public function valExisPro($codigo) {
         $con = Conexion::getConexion();
         try {
-            $query = $con->prepare("select c.codigo from programas as c where c.codigoo=?"); 
+            $query = $con->prepare("select c.codigo from programas as c where c.codigo=?"); 
             $query->bindParam(1, $codigo);
             $query->execute();
             return empty($query->fetchAll());
@@ -31,56 +31,27 @@ class ProgramasDAO {
     //Insertar nuevo programa
     public function insertarPrograma(ProgramaDTO $insertarPrograma) {
         $con = Conexion::getConexion();
-        try{
-            $opcion=$_REQUEST['op'];
-            $cod_p=$_REQUEST['codigo'];
-            $nom_p=$_REQUEST['Nombre'];
-            echo "opcion:".$opcion;
-            echo "<br>codigo:".$cod_p;
-            echo "<br>Nombre:".$nom_p;
-            if($opcion=='Insertar'){
-                $sql = "INSERT INTO programas (codigo,Nombre) VALUES ('$cod_p', '$nom_p')";
-                if ($con->$query($sql) === TRUE){
-                    echo "Insertar";
-                } 
-                else{
-                    echo "Error: " . $sql . "<br>" . $con->error;
-                }
-                echo "<script>"
-                    ."alert('Se inserto exitosamente');"
-                    . "</script> ";
-            }
-            echo " <script>location.href='programas.php';</script> ";
-        }
-        catch (Exception $ex) {
-            echo ("(E) ") . $ex->getMessage();
+        try {
+            $query = $con->prepare("insert into programas values(?,?)"); //Sentecia sql
+            // Se pasan todos los parametros a la sentencia SQL
+            $query->bindParam(1, $insertarPrograma->getCodigo());
+            $query->bindParam(2, $insertarPrograma->getNombre());
+            $query->execute(); //Ejecuta la senecia sql
+            return "(P) Programa registrado con exito."; //Se retrona mensaje de confirmacion del registro
+        } catch (Exception $ex) {
+            echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
         }
     }
     //Modificar programa
     public function modificarPrograma(ProgramaDTO $modificarPrograma){
         $con = Conexion::getConexion();
         try{
-            $opcion=$_REQUEST['op'];
-            $cod_p=$_REQUEST['codigo'];
-            $nom_p=$_REQUEST['Nombre'];   
-            echo "opcion:".$opcion;
-            echo "<br>codigo:".$cod_p;
-            echo "<br>Nombre:".$nom_p;
-            if($opcion=='Modificar'){	
-                $sql = "UPDATE  programas SET Nombre='$nom_p' WHERE codigo='$cod_p'";
-                if ($con->$query($sql) === TRUE){
-                    echo "Modificar";
-                } 
-                else{
-                    echo "Error: " . $sql . "<br>" . $con->error;
-                }
-                echo "<script>"
-                    . "alert('Se modifico exitosamente');"
-                    . "</script>";
-            }
-            echo " <script>location.href='programas.php';</script> ";
+            $query=$con->prepare("update programas set nombre=? where codigp=?");
+            $query->bindParam(1, $modificarPrograma->getNombre());
+            $query->execute();
+            return "(P) Programa moficado con exito.";
         } catch (Exception $ex) {
-            echo ("(E) ") . $ex->getMessage();
+            echo $ex->getMessage();
         }
         
     }
@@ -88,10 +59,11 @@ class ProgramasDAO {
     public function eliminarPrograma($eliminarPrograma){
         $con = Conexion::getConexion();
         try {
-            $query = $con->prepare("DELETE from programas WHERE codigo='$eliminarPrograma'"); //Sentecia sql
+            $query = $con->prepare("DELETE FROM programas WHERE codigp =?"); //Sentecia sql
             // Se pasan todos los parametros a la sentencia SQL
+            $query->bindParam(1, $eliminarPrograma);
             $query->execute(); //Ejecuta la senecia sql
-            return "(P)Programa Eliminado con existo.";
+            return "(P) Programa eliminado con exito.";
             ; //Se retrona mensaje de confirmacion del registro
         } catch (Exception $ex) {
             echo ("(E) ") . $ex->getMessage(); // imprime el mensaje si ocurrio un error en el proceso
