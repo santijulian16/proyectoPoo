@@ -1,50 +1,65 @@
-<?php 
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <style>
+    .error {font-weight: bold; color:red;}
+    .mensaje {color:#030;}
+    .listadoImagenes img {float:left;border:1px solid #ccc; padding:2px;margin:2px;}
+    </style>
+</head>
+ 
+<body>
+ 
+<?php
+# Conectamos con MySQL
 include '../model.conexion/Conexion.php';
+ 
+# Comprovamos que se haya subido un fichero
+if (is_uploaded_file($_FILES["userfile"]["tmp_name"]))
+{
+    # verificamos el formato de la imagen
+    if ($_FILES["userfile"]["type"]=="image/jpeg" || $_FILES["userfile"]["type"]=="image/pjpeg" || $_FILES["userfile"]["type"]=="image/gif" || $_FILES["userfile"]["type"]=="image/bmp" || $_FILES["userfile"]["type"]=="image/png")
+    {
 
-    //Abro el archivo de imagen para cargar sus contenidos
-    $archivo = 'imagenes/img1.jpeg';
-
-    $fp = fopen ($archivo, 'r');
-    if ($fp){
-    $datos = fread ($fp, filesize ($archivo)); // cargo la imagen
-    fclose($fp);
+        # Agregamos la imagen a la base de datos
+        $sql="INSERT INTO `imagenes` (nombre) VALUES (".$_FILES["userfile"]["type"]."')";
+        $mysqli->query($sql);
+ 
+        # Cogemos el identificador con que se ha guardado
+        $id=$mysqli->insert_id;
+ 
+        # Mostramos la imagen agregada
+        echo "<div class='mensaje'>Imagen agregada con el id ".$id."</div>";
+    }else{
+        echo "<div class='error'>Error: El formato de archivo tiene que ser JPG, GIF, BMP o PNG.</div>";
     }
-
-    // averiguo su tipo mime
-    $tipo_mime = 'image/jpeg';
-    $isize = imagesize ($archivo);
-    if ($isize)
-    $tipo_mime = $isize['mime'];
-
-    // La guardamos en la BD
-    $datos = asignamaterias ($datos);
-    $sql = "INSERT INTO imagenes (imagen, tipo) VALUES ('$datos', '$tipo_mime')";
-    $res = mysql_query($sql);
-    if (!$res){
-        echo "Error al ejecutar la consulta ($sql)\n";
+}
+?>
+ 
+<h2>Selecciona una imagen</h2>
+<form enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST">
+    <input name="userfile" type="file">
+    <p><input type="submit" value="Guardar Imagen">
+</form>
+ 
+<h2>Listado de las imagenes añadidas a la base de datos</h2>
+<div class="listadoImagenes">
+    <?php
+    $result=$mysqli->query("SELECT * FROM imagephp ORDER BY id DESC");
+    if($result)
+    {
+        while($row=$result->fetch_array(MYSQLI_ASSOC))
+        {
+            echo "<img src='imagen_mostrar.php?id=".$row["id"]."' width='".$row["anchura"]."' height='".$row["aaltura"]."'>";
+        }
     }
-    else{
-        echo "Error al abrir el archivo";
-    }
-    
-    //segunda parte
-    
-    $id = intval ($_GET['id']); // imaginamos que el parámetro "id" nos llega en la URL (p. ej. imagen.php?id=5).
-    $sql = "SELECT imagen, tipo FROM imagenes WHERE id='$id'";
-    $res = mysql_query ($sql);
-    if ( $res AND mysql_num_rows($res)>0 ){ // se ha encontrado la imagen
-    $datos = mysql_fetch_array ($res);
+    ?>
+</div>
+</body>
+</html>
 
-    // Indicamos al navegador el tipo de imagen que le vamos a enviar
-    header ('Content-type: ' . $datos['tipo']);
-
-    // Enviamos los datos binarios (la imagen)
-    echo asignamaterias ($datos['imagen']);
-    }
-    else
-    echo "Error al ejecutar la consulta ($sql)\n";
-    
-    
+<?php   
     //http://ingeniuz.blogspot.com.co/2005/05/cmo-almacenar-una-imagen-en-mysql-sql.html
 ?>
 
